@@ -1,0 +1,10 @@
+{
+  "name": "Sarah’s Meal Tracker",
+  "short_name": "Meal Tracker",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7f4ef",
+  "theme_color": "#f7f4ef",
+  "description": "Sarah's personal food, wine, movement and wellbeing tracker.",
+  "icons": []
+}

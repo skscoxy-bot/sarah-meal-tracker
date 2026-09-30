@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ef">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Sarah’s Meal Tracker</title>
+<style>
+:root{--bg:#f7f4ef;--card:#fffdf9;--ink:#282622;--muted:#777269;--line:#e4ded4;--green:#dff0df;--amber:#f8e9bd;--red:#f4d8d5;--accent:#5e584f}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif}
+button,input,textarea{font:inherit}.app{max-width:760px;margin:auto;padding:calc(14px + env(safe-area-inset-top)) 12px calc(35px + env(safe-area-inset-bottom))}
+header{padding:8px 4px 16px;display:flex;justify-content:space-between;align-items:flex-end}
+h1{font-size:28px;margin:0 0 3px;font-weight:760;letter-spacing:-.5px}.sub{color:var(--muted);font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;margin:10px 0;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+button{cursor:pointer}.topbtn,.navbtn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px;color:var(--ink)}
+.weeknav{display:flex;gap:8px;align-items:center;justify-content:space-between}.weeklabel{text-align:center;font-weight:700;flex:1}
+.grid{display:grid;grid-template-columns:70px repeat(7,1fr);gap:5px;align-items:center}.dayhead{text-align:center;font-size:12px;color:var(--muted);font-weight:700;padding:5px 0}.rowlabel{font-size:12px;color:var(--muted);font-weight:650}
+.cell{width:100%;min-height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;color:#aaa;padding:0}.cell.green{background:var(--green);color:var(--ink)}.cell.amber{background:var(--amber);color:var(--ink)}.cell.red{background:var(--red);color:var(--ink)}
+.cell:active,.pill:active,.navbtn:active,.topbtn:active{transform:scale(.96)}
+.sectiontitle{font-size:16px;font-weight:750;margin:2px 0 11px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#faf8f4;border:1px solid var(--line);border-radius:14px;padding:11px;text-align:center}.num{font-size:22px;font-weight:750}.label{font-size:11px;color:var(--muted);margin-top:2px}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}.control{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px}.control b{display:block;font-size:13px;margin-bottom:8px}.buttons{display:flex;flex-wrap:wrap;gap:6px}.pill{border:1px solid var(--line);background:#faf8f4;border-radius:10px;padding:8px 9px;font-size:13px;color:var(--ink)}
+.exercise-log{margin-top:9px;color:var(--muted);font-size:12px;line-height:1.5}.wine-log{margin-top:9px;font-size:22px;letter-spacing:1px;min-height:25px}
+input,textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff;color:var(--ink)}.note{min-height:75px;resize:vertical}
+.legend{font-size:12px;color:var(--muted);line-height:1.6}.legend span{white-space:nowrap}
+.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#2d2b28;color:#fff;padding:10px 15px;border-radius:12px;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:5}.toast.show{opacity:1}
+@media(max-width:430px){.app{padding-left:10px;padding-right:10px}.grid{grid-template-columns:60px repeat(7,1fr);gap:4px}.cell{min-height:40px}.rowlabel{font-size:11px}.dayhead{font-size:11px}.controls{grid-template-columns:1fr}.stats{gap:6px}.stat{padding:9px 5px}}
+</style>
+<link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+<div class="app">
+<header><div><h1>Sarah’s Meal Tracker</h1><div class="sub">Food • wine • movement • wellbeing</div></div><button class="topbtn" id="todayBtn">Today</button></header>
+
+<div class="card">
+ <div class="weeknav"><button class="navbtn" id="prevBtn">‹</button><div class="weeklabel" id="weekLabel"></div><button class="navbtn" id="nextBtn">›</button></div>
+</div>
+
+<div class="card">
+ <div class="sectiontitle">My week at a glance</div>
+ <div class="grid" id="grid"></div>
+ <div class="legend" style="margin-top:12px"><span>🟢 Green = balanced/nourishing</span> &nbsp; <span>🟠 Amber = okay, but not ideal</span> &nbsp; <span>🔴 Red = something I want less often</span></div>
+</div>
+
+<div class="card">
+ <div class="sectiontitle">This week's snapshot</div>
+ <div class="stats">
+  <div class="stat"><div class="num" id="greens">0</div><div class="label">🟢 meals</div></div>
+  <div class="stat"><div class="num" id="ambers">0</div><div class="label">🟠 meals</div></div>
+  <div class="stat"><div class="num" id="reds">0</div><div class="label">🔴 meals</div></div>
+  <div class="stat"><div class="num" id="wineTotal">0</div><div class="label">🍷 glasses</div></div>
+  <div class="stat"><div class="num" id="exerciseTotal">0</div><div class="label">🏃 sessions</div></div>
+  <div class="stat"><div class="num" id="weightDisplay">—</div><div class="label">weekly weight</div></div>
+ </div>
+</div>
+
+<div class="card">
+ <div class="sectiontitle">Quick entry — today</div>
+ <div class="controls">
+  <div class="control"><b>🍷 Wine</b><div class="buttons"><button class="pill" id="wine1">+1 glass</button><button class="pill" id="wine2">+2</button><button class="pill" id="wineReset">Reset</button></div><div class="wine-log" id="wineLog"></div></div>
+  <div class="control"><b>🏃 Exercise</b><div class="buttons"><button class="pill" data-ex="Walk">🚶 Walk</button><button class="pill" data-ex="Dance/Zumba">💃 Dance</button><button class="pill" data-ex="Weights">🏋️ Weights</button><button class="pill" data-ex="Other">＋ Other</button></div><div class="exercise-log" id="exerciseLog">No exercise logged today</div></div>
+ </div>
+</div>
+
+<div class="card">
+ <div class="sectiontitle">Weekly check-in</div>
+ <label class="sub" for="weight">Weight (optional)</label>
+ <input id="weight" type="number" step="0.1" placeholder="e.g. 11.2">
+ <div style="height:10px"></div>
+ <label class="sub" for="note">How did this week feel?</label>
+ <textarea id="note" class="note" placeholder="What went well? What would I like to do differently next week?"></textarea>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+const meals=['Breakfast','Lunch','Dinner','Extras'];
+const KEY='sarah-meal-tracker-v1';
+let db={};
+try{db=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){db={}};
+let anchor=startOfWeek(new Date());
+
+function dateKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function startOfWeek(d){let x=new Date(d);x.setHours(12,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x}
+function fmt(d){return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}
+function ensure(k){if(!db[k])db[k]={meals:{},wine:0,exercise:[],note:'',weekWeight:''};return db[k]}
+function save(){localStorage.setItem(KEY,JSON.stringify(db))}
+function getDay(i){let d=new Date(anchor);d.setDate(d.getDate()+i);return d}
+
+function render(){
+ let end=getDay(6);
+ document.getElementById('weekLabel').textContent=fmt(anchor)+' – '+fmt(end);
+ const grid=document.getElementById('grid');
+ grid.innerHTML='<div></div>'+['M','T','W','T','F','S','S'].map(x=>'<div class="dayhead">'+x+'</div>').join('');
+ meals.forEach(function(m){
+  grid.insertAdjacentHTML('beforeend','<div class="rowlabel">'+m+'</div>');
+  for(let i=0;i<7;i++){
+   let d=getDay(i), k=dateKey(d), o=ensure(k), v=o.meals[m]||'';
+   let symbol=v==='green'?'🟢':v==='amber'?'🟠':v==='red'?'🔴':'·';
+   let btn=document.createElement('button');btn.className='cell '+v;btn.type='button';btn.textContent=symbol;
+   btn.setAttribute('aria-label',m+' '+fmt(d)+' '+(v||'not rated'));
+   btn.addEventListener('click',function(){cycleMeal(k,m)});
+   grid.appendChild(btn);
+  }
+ });
+ let g=0,a=0,r=0,w=0,e=0;
+ for(let i=0;i<7;i++){let o=ensure(dateKey(getDay(i)));Object.values(o.meals).forEach(v=>{if(v==='green')g++;if(v==='amber')a++;if(v==='red')r++});w+=Number(o.wine)||0;e+=(o.exercise||[]).length}
+ document.getElementById('greens').textContent=g;document.getElementById('ambers').textContent=a;document.getElementById('reds').textContent=r;document.getElementById('wineTotal').textContent=w;document.getElementById('exerciseTotal').textContent=e;
+ let current=ensure(dateKey(new Date()));
+ document.getElementById('wineLog').textContent=current.wine?('🍷 '.repeat(current.wine).trim()):'';
+ document.getElementById('exerciseLog').textContent=current.exercise.length?current.exercise.join(' • '):'No exercise logged today';
+ let week=ensure(dateKey(anchor));
+ document.getElementById('weight').value=week.weekWeight||'';
+ document.getElementById('note').value=week.note||'';
+ document.getElementById('weightDisplay').textContent=week.weekWeight||'—';
+}
+function cycleMeal(k,m){let o=ensure(k),v=o.meals[m]||'';o.meals[m]=v===''?'green':v==='green'?'amber':v==='amber'?'red':'';save();render()}
+function addWine(n){let o=ensure(dateKey(new Date()));o.wine=(Number(o.wine)||0)+n;save();render();toast('Added '+n+' glass'+(n>1?'es':'')+' 🍷')}
+function resetWine(){ensure(dateKey(new Date())).wine=0;save();render()}
+function addExercise(type){let o=ensure(dateKey(new Date()));o.exercise.push(type);save();render();toast(type+' added 💪')}
+function move(n){anchor=new Date(anchor);anchor.setDate(anchor.getDate()+n);render()}
+function today(){anchor=startOfWeek(new Date());render()}
+function toast(t){let x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1200)}
+
+document.getElementById('prevBtn').addEventListener('click',()=>move(-7));
+document.getElementById('nextBtn').addEventListener('click',()=>move(7));
+document.getElementById('todayBtn').addEventListener('click',today);
+document.getElementById('wine1').addEventListener('click',()=>addWine(1));
+document.getElementById('wine2').addEventListener('click',()=>addWine(2));
+document.getElementById('wineReset').addEventListener('click',resetWine);
+document.querySelectorAll('[data-ex]').forEach(b=>b.addEventListener('click',()=>addExercise(b.dataset.ex)));
+document.getElementById('weight').addEventListener('input',function(){ensure(dateKey(anchor)).weekWeight=this.value;save();document.getElementById('weightDisplay').textContent=this.value||'—'});
+document.getElementById('note').addEventListener('input',function(){ensure(dateKey(anchor)).note=this.value;save()});
+render();
+})();
+</script>
+<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js");</script>
+</body>
+</html>
