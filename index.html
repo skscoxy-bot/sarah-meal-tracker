@@ -1,142 +1,75 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f7f4ef">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>Sarah’s Meal Tracker</title>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6a6359"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="icon-1024.png"><link rel="manifest" href="manifest.webmanifest">
+<title>Coxy’s Kitchen Food &amp; Wellbeing Tracker</title>
 <style>
-:root{--bg:#f7f4ef;--card:#fffdf9;--ink:#282622;--muted:#777269;--line:#e4ded4;--green:#dff0df;--amber:#f8e9bd;--red:#f4d8d5;--accent:#5e584f}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif}
-button,input,textarea{font:inherit}.app{max-width:760px;margin:auto;padding:calc(14px + env(safe-area-inset-top)) 12px calc(35px + env(safe-area-inset-bottom))}
-header{padding:8px 4px 16px;display:flex;justify-content:space-between;align-items:flex-end}
-h1{font-size:28px;margin:0 0 3px;font-weight:760;letter-spacing:-.5px}.sub{color:var(--muted);font-size:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;margin:10px 0;box-shadow:0 2px 10px rgba(0,0,0,.03)}
-button{cursor:pointer}.topbtn,.navbtn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px;color:var(--ink)}
-.weeknav{display:flex;gap:8px;align-items:center;justify-content:space-between}.weeklabel{text-align:center;font-weight:700;flex:1}
-.grid{display:grid;grid-template-columns:70px repeat(7,1fr);gap:5px;align-items:center}.dayhead{text-align:center;font-size:12px;color:var(--muted);font-weight:700;padding:5px 0}.rowlabel{font-size:12px;color:var(--muted);font-weight:650}
-.cell{width:100%;min-height:44px;border:1px solid var(--line);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;color:#aaa;padding:0}.cell.green{background:var(--green);color:var(--ink)}.cell.amber{background:var(--amber);color:var(--ink)}.cell.red{background:var(--red);color:var(--ink)}
-.cell:active,.pill:active,.navbtn:active,.topbtn:active{transform:scale(.96)}
-.sectiontitle{font-size:16px;font-weight:750;margin:2px 0 11px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#faf8f4;border:1px solid var(--line);border-radius:14px;padding:11px;text-align:center}.num{font-size:22px;font-weight:750}.label{font-size:11px;color:var(--muted);margin-top:2px}
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}.control{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px}.control b{display:block;font-size:13px;margin-bottom:8px}.buttons{display:flex;flex-wrap:wrap;gap:6px}.pill{border:1px solid var(--line);background:#faf8f4;border-radius:10px;padding:8px 9px;font-size:13px;color:var(--ink)}
-.exercise-log{margin-top:9px;color:var(--muted);font-size:12px;line-height:1.5}.wine-log{margin-top:9px;font-size:22px;letter-spacing:1px;min-height:25px}
-input,textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff;color:var(--ink)}.note{min-height:75px;resize:vertical}
-.legend{font-size:12px;color:var(--muted);line-height:1.6}.legend span{white-space:nowrap}
-.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#2d2b28;color:#fff;padding:10px 15px;border-radius:12px;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:5}.toast.show{opacity:1}
-@media(max-width:430px){.app{padding-left:10px;padding-right:10px}.grid{grid-template-columns:60px repeat(7,1fr);gap:4px}.cell{min-height:40px}.rowlabel{font-size:11px}.dayhead{font-size:11px}.controls{grid-template-columns:1fr}.stats{gap:6px}.stat{padding:9px 5px}}
-</style>
-<link rel="manifest" href="manifest.webmanifest">
-</head>
-<body>
-<div class="app">
-<header><div><h1>Sarah’s Meal Tracker</h1><div class="sub">Food • wine • movement • wellbeing</div></div><button class="topbtn" id="todayBtn">Today</button></header>
+:root{--bg:#f8f4ee;--card:#fffdf9;--ink:#3b3834;--muted:#746e66;--line:#e4ddd4;--brand:#6a6359;--wine:#8c2e50;--mustard:#c99e3a;--blue:#2d6c8b;--green:#dff1df;--green2:#2f8056;--amber:#fae9bd;--amber2:#b77913;--red:#f5d7d4;--red2:#c83d43;--softwine:#f4e7ec;--softblue:#e8f1f5;--softmustard:#f7efdc}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;background:linear-gradient(145deg,#f7f5f1 0%,#efede8 48%,#fbfaf7 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif}.app{max-width:760px;margin:auto;padding:calc(12px + env(safe-area-inset-top)) 10px calc(32px + env(safe-area-inset-bottom))}button,input,textarea{font:inherit}button{cursor:pointer}
+header{padding:4px 5px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{display:flex;align-items:center;gap:11px;min-width:0}.miniicon{width:50px;height:50px;border-radius:14px;box-shadow:0 3px 10px rgba(106,99,89,.15)}.brandlogo{display:block;width:min(215px,52vw);height:auto;max-height:55px;object-fit:contain;object-position:left center}.sub{color:var(--muted);font-size:12px}.topbtn,.navbtn{border:1px solid var(--line);background:rgba(255,255,255,.85);border-radius:12px;padding:9px 12px;color:var(--ink);box-shadow:0 2px 7px rgba(106,99,89,.06)}
+.card{background:rgba(255,253,249,.93);border:1px solid rgba(228,221,212,.9);border-radius:18px;padding:14px;margin:10px 0;box-shadow:0 4px 16px rgba(106,99,89,.06)}.weeknav{display:flex;gap:8px;align-items:center}.weeklabel{text-align:center;font-weight:750;flex:1}.sectiontitle{font-size:17px;font-weight:780;margin:1px 0 11px;color:var(--brand)}.sectiontitle small{font-weight:500;color:var(--muted)}
+.grid{display:grid;grid-template-columns:68px repeat(7,1fr);gap:5px;align-items:center}.dayhead{text-align:center;font-size:10px;color:var(--muted);font-weight:750;padding:4px 0;line-height:1.25}.dayhead strong{display:block;font-size:11px;color:var(--ink)}.rowlabel{font-size:11px;color:var(--muted);font-weight:700}.cell{width:100%;min-height:42px;border:1px solid var(--line);border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;color:#aaa;padding:0}.cell.green{background:var(--green)}.cell.amber{background:var(--amber)}.cell.red{background:var(--red)}.cell.selected{outline:2px solid var(--wine);outline-offset:1px}.cell:active,.pill:active,.navbtn:active,.topbtn:active,.daypick:active{transform:scale(.97)}
+.legend{font-size:11px;color:var(--muted);line-height:1.6;margin-top:10px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.stat{background:linear-gradient(145deg,#fbf8f3,#f8f0f2);border:1px solid var(--line);border-radius:14px;padding:9px 5px;text-align:center}.num{font-size:21px;font-weight:780;color:var(--brand)}.label{font-size:10px;color:var(--muted);margin-top:2px}
+.quickfood{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:10px}.quickcat{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 4px;font-size:11px}.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}.control{border:1px solid var(--line);background:#fff;border-radius:14px;padding:11px}.control b{display:block;font-size:13px;margin-bottom:8px;color:var(--brand)}.buttons{display:flex;flex-wrap:wrap;gap:6px}.pill{border:1px solid var(--line);background:#faf8f4;border-radius:10px;padding:7px 9px;font-size:12px;color:var(--ink)}.pill.reset{background:var(--softwine);border-color:#e6cbd4}.logline{margin-top:8px;color:var(--muted);font-size:12px;line-height:1.45;min-height:18px}
+.dayselect{display:flex;gap:6px;overflow:auto;padding-bottom:2px;margin-bottom:10px}.daypick{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:12px;padding:7px 10px;text-align:center;font-size:11px;color:var(--muted)}.daypick strong{display:block;color:var(--ink);font-size:12px}.daypick.active{background:var(--softwine);border-color:#d8aebe;color:var(--wine)}
+.foodrow{display:grid;grid-template-columns:78px 1fr 42px;gap:7px;align-items:center;margin:7px 0}.foodlabel{font-size:12px;font-weight:700;color:var(--muted)}.foodinput{min-height:42px}.ragbtn{width:42px;height:42px;border:1px solid var(--line);border-radius:11px;background:#fff;font-size:17px}.ragbtn.green{background:var(--green)}.ragbtn.amber{background:var(--amber)}.ragbtn.red{background:var(--red)}
+textarea,input{width:100%;border:1px solid var(--line);border-radius:11px;padding:10px;background:#fff;color:var(--ink)}textarea:focus,input:focus{outline:2px solid rgba(45,108,139,.22);border-color:var(--blue)}.note{min-height:78px;resize:vertical}.reflection{margin-top:10px}.reflection label{display:block;font-size:12px;font-weight:700;color:var(--brand);margin:9px 0 5px}.dayactions{display:flex;gap:7px;margin-top:9px}.dayactions .pill{flex:1}.summarybox{background:linear-gradient(135deg,var(--softblue),#f8f4ee);border-radius:14px;padding:10px;margin-top:10px;font-size:12px;color:var(--muted)}
+.brandlink{display:inline-block;margin-top:5px;color:var(--wine);text-decoration:none;font-size:11px}.toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--brand);color:#fff;padding:10px 15px;border-radius:12px;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:5}.toast.show{opacity:1}
+.caticon{display:inline-flex;width:20px;justify-content:center;font-size:17px;line-height:1}.cat-breakfast{color:var(--blue)}.cat-lunch{color:var(--green2)}.cat-dinner{color:var(--mustard)}.cat-extras{color:var(--wine)}.cat-alcohol{color:var(--wine)}.cat-exercise{color:var(--blue)}.quickcat{font-weight:700}.menubtn{border:0;background:transparent;color:var(--blue);font-size:28px;line-height:1;padding:4px 2px}.menu{position:absolute;right:10px;top:72px;background:#fffdf9;border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 24px rgba(106,99,89,.16);padding:6px;display:none;z-index:10;min-width:150px}.menu.show{display:block}.menu button{display:block;width:100%;text-align:left;border:0;background:transparent;padding:10px 12px;border-radius:9px;color:var(--brand)}.menu button:active{background:var(--softblue)}.bottomnav{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:12px;padding:7px;border:1px solid var(--line);border-radius:16px;background:rgba(255,253,249,.96);box-shadow:0 4px 16px rgba(106,99,89,.06)}.bottomnav button{border:0;background:transparent;padding:7px 3px;border-radius:10px;color:var(--muted);font-size:10px}.bottomnav .navicon{display:block;font-size:18px;margin-bottom:3px}.bottomnav .tracker.active{color:var(--wine)}.bottomnav .foodlog.active{color:var(--mustard)}.bottomnav .checkin.active{color:var(--blue)}.bottomnav .settings{color:var(--brand)}
+@media(max-width:430px){.quickfood{grid-template-columns:repeat(2,1fr)}.brandlogo{width:min(185px,48vw);max-height:48px}.miniicon{width:44px;height:44px}.grid{grid-template-columns:57px repeat(7,1fr);gap:4px}.cell{min-height:39px}.controls{grid-template-columns:1fr}.stats{gap:5px}.foodrow{grid-template-columns:67px 1fr 40px}.foodlabel{font-size:11px}.ragbtn{width:40px;height:40px}}
+</style></head><body><div class="app">
+<header><div class="brand"><div><img class="brandlogo" src="coxys-kitchen-script.png" alt="Coxy’s Kitchen"><div class="sub">Food &amp; Wellbeing Tracker</div><a class="brandlink" href="https://www.instagram.com/coxys_kitchen/" target="_blank" rel="noopener">@coxys_kitchen</a></div></div><button class="menubtn" id="menuBtn" aria-label="Open menu">☰</button></header><div class="menu" id="menu"><button id="menuToday">Today</button><button id="menuTop">My week at a glance</button><button id="menuFood">Daily Food Log</button><button id="menuCheck">Weekly check-in</button></div>
 
-<div class="card">
- <div class="weeknav"><button class="navbtn" id="prevBtn">‹</button><div class="weeklabel" id="weekLabel"></div><button class="navbtn" id="nextBtn">›</button></div>
-</div>
+<div class="card"><div class="weeknav"><button class="navbtn" id="prevBtn">‹</button><div class="weeklabel" id="weekLabel"></div><button class="navbtn" id="nextBtn">›</button></div></div>
 
-<div class="card">
- <div class="sectiontitle">My week at a glance</div>
- <div class="grid" id="grid"></div>
- <div class="legend" style="margin-top:12px"><span>🟢 Green = balanced/nourishing</span> &nbsp; <span>🟠 Amber = okay, but not ideal</span> &nbsp; <span>🔴 Red = something I want less often</span></div>
-</div>
+<div class="card"><div class="sectiontitle">My week at a glance</div><div class="grid" id="grid"></div><div class="legend">🟢 Green = balanced/nourishing &nbsp; 🟠 Amber = okay, but not ideal &nbsp; 🔴 Red = something I want less often</div></div>
 
-<div class="card">
- <div class="sectiontitle">This week's snapshot</div>
- <div class="stats">
-  <div class="stat"><div class="num" id="greens">0</div><div class="label">🟢 meals</div></div>
-  <div class="stat"><div class="num" id="ambers">0</div><div class="label">🟠 meals</div></div>
-  <div class="stat"><div class="num" id="reds">0</div><div class="label">🔴 meals</div></div>
-  <div class="stat"><div class="num" id="wineTotal">0</div><div class="label">🍷 glasses</div></div>
-  <div class="stat"><div class="num" id="exerciseTotal">0</div><div class="label">🏃 sessions</div></div>
-  <div class="stat"><div class="num" id="weightDisplay">—</div><div class="label">weekly weight</div></div>
- </div>
-</div>
+<div class="card"><div class="sectiontitle">This week's snapshot</div><div class="stats"><div class="stat"><div class="num" id="greens">0</div><div class="label">🟢 meals</div></div><div class="stat"><div class="num" id="ambers">0</div><div class="label">🟠 meals</div></div><div class="stat"><div class="num" id="reds">0</div><div class="label">🔴 meals</div></div><div class="stat"><div class="num" id="alcoholTotal">0</div><div class="label">🍷 alcohol days</div></div><div class="stat"><div class="num" id="exerciseTotal">0</div><div class="label">🏃 exercise days</div></div><div class="stat"><div class="num" id="weightDisplay">—</div><div class="label">weekly weight</div></div></div></div>
 
-<div class="card">
- <div class="sectiontitle">Quick entry — today</div>
- <div class="controls">
-  <div class="control"><b>🍷 Wine</b><div class="buttons"><button class="pill" id="wine1">+1 glass</button><button class="pill" id="wine2">+2</button><button class="pill" id="wineReset">Reset</button></div><div class="wine-log" id="wineLog"></div></div>
-  <div class="control"><b>🏃 Exercise</b><div class="buttons"><button class="pill" data-ex="Walk">🚶 Walk</button><button class="pill" data-ex="Dance/Zumba">💃 Dance</button><button class="pill" data-ex="Weights">🏋️ Weights</button><button class="pill" data-ex="Other">＋ Other</button></div><div class="exercise-log" id="exerciseLog">No exercise logged today</div></div>
- </div>
-</div>
+<div class="card"><div class="sectiontitle">Quick entry — today</div><div class="quickfood"><button class="quickcat cat-breakfast" data-jump="Breakfast">🥣 Breakfast</button><button class="quickcat cat-lunch" data-jump="Lunch">🥗 Lunch</button><button class="quickcat cat-dinner" data-jump="Dinner">🍴 Dinner</button><button class="quickcat cat-extras" data-jump="Extras">🍎 Extras</button></div><div class="controls"><div class="control"><b class="cat-alcohol">🍷 Alcohol</b><div class="buttons"><button class="pill" id="alcohol1">+1 drink</button><button class="pill" id="alcohol2">+2</button><button class="pill reset" id="alcoholReset">Reset</button></div><div class="logline" id="alcoholLog"></div></div><div class="control"><b>🏃 Exercise</b><div class="buttons"><button class="pill" data-ex="Walk">🚶 Walk</button><button class="pill" data-ex="Dance/Zumba">💃 Dance</button><button class="pill" data-ex="Weights">🏋️ Weights</button><button class="pill" data-ex="Other">＋ Other</button><button class="pill reset" id="exerciseReset">Reset</button></div><div class="logline" id="exerciseLog">No exercise logged today</div></div></div></div>
 
-<div class="card">
- <div class="sectiontitle">Weekly check-in</div>
- <label class="sub" for="weight">Weight (optional)</label>
- <input id="weight" type="number" step="0.1" placeholder="e.g. 11.2">
- <div style="height:10px"></div>
- <label class="sub" for="note">How did this week feel?</label>
- <textarea id="note" class="note" placeholder="What went well? What would I like to do differently next week?"></textarea>
-</div>
-</div>
-<div class="toast" id="toast"></div>
+<div class="card"><div class="sectiontitle">Daily Food Log <small id="selectedDateLabel"></small></div><div class="dayselect" id="dayselect"></div><div id="foodlog"></div><div style="height:7px"></div><label class="sub" for="dailySummary">Daily summary <small>(optional)</small></label><textarea id="dailySummary" class="note" placeholder="How did the day feel? Anything worth remembering?"></textarea><div class="dayactions"><button class="pill" id="clearDay">↶ Clear this day</button><button class="pill" id="copyTomorrow">Copy to tomorrow →</button></div></div>
 
+<div class="card"><div class="sectiontitle">Weekly check-in</div><label class="sub" for="weight">Weight (optional)</label><input id="weight" type="number" step="0.1" placeholder="e.g. 11.2"><div class="summarybox"><strong>Week in numbers</strong><div id="weekSummary" style="margin-top:4px"></div></div><div class="reflection"><div class="sectiontitle">Wellbeing Reflections</div><label for="wentWell">What went well?</label><textarea id="wentWell" class="note" placeholder="What am I pleased with this week?"></textarea><label for="challenging">What was challenging?</label><textarea id="challenging" class="note" placeholder="What felt difficult, stressful or got in the way?"></textarea><label for="wellbeingImpact">How has this affected my mental and physical wellbeing?</label><textarea id="wellbeingImpact" class="note" placeholder="How have food, movement, rest and everything else affected how I feel?"></textarea></div></div>
+<div class="bottomnav"><button class="tracker active" id="navTracker"><span class="navicon">⌂</span>Tracker</button><button class="foodlog" id="navFood"><span class="navicon">▤</span>Food Log</button><button class="checkin" id="navCheck"><span class="navicon">▥</span>Weekly Check-in</button><button class="settings" id="navSettings"><span class="navicon">⚙</span>Settings</button></div></div><div class="toast" id="toast"></div>
 <script>
 (function(){
 const meals=['Breakfast','Lunch','Dinner','Extras'];
-const KEY='sarah-meal-tracker-v1';
-let db={};
-try{db=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){db={}};
-let anchor=startOfWeek(new Date());
-
+const KEY='sarah-meal-tracker-v1'; let db={}; try{db=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){db={}}; let anchor=startOfWeek(new Date()); let selectedDate=new Date(); selectedDate.setHours(12,0,0,0);
 function dateKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function startOfWeek(d){let x=new Date(d);x.setHours(12,0,0,0);x.setDate(x.getDate()-((x.getDay()+6)%7));return x}
-function fmt(d){return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}
-function ensure(k){if(!db[k])db[k]={meals:{},wine:0,exercise:[],note:'',weekWeight:''};return db[k]}
+function fmt(d,opts={}){return d.toLocaleDateString('en-GB',opts)}
+function ensure(k){if(!db[k])db[k]={meals:{},wine:0,alcohol:0,exercise:[],note:'',weekWeight:'',foods:{Breakfast:'',Lunch:'',Dinner:'',Extras:''},dailySummary:''}; let o=db[k]; if(o.alcohol==null)o.alcohol=Number(o.wine)||0; if(!o.foods)o.foods={Breakfast:'',Lunch:'',Dinner:'',Extras:''}; if(o.dailySummary==null)o.dailySummary=''; if(!o.reflections)o.reflections={wentWell:'',challenging:'',wellbeingImpact:''}; return o}
 function save(){localStorage.setItem(KEY,JSON.stringify(db))}
 function getDay(i){let d=new Date(anchor);d.setDate(d.getDate()+i);return d}
-
+function currentKey(){return dateKey(new Date())}
+function setSelected(d){selectedDate=new Date(d);selectedDate.setHours(12,0,0,0);render()}
 function render(){
- let end=getDay(6);
- document.getElementById('weekLabel').textContent=fmt(anchor)+' – '+fmt(end);
- const grid=document.getElementById('grid');
- grid.innerHTML='<div></div>'+['M','T','W','T','F','S','S'].map(x=>'<div class="dayhead">'+x+'</div>').join('');
- meals.forEach(function(m){
-  grid.insertAdjacentHTML('beforeend','<div class="rowlabel">'+m+'</div>');
-  for(let i=0;i<7;i++){
-   let d=getDay(i), k=dateKey(d), o=ensure(k), v=o.meals[m]||'';
-   let symbol=v==='green'?'🟢':v==='amber'?'🟠':v==='red'?'🔴':'·';
-   let btn=document.createElement('button');btn.className='cell '+v;btn.type='button';btn.textContent=symbol;
-   btn.setAttribute('aria-label',m+' '+fmt(d)+' '+(v||'not rated'));
-   btn.addEventListener('click',function(){cycleMeal(k,m)});
-   grid.appendChild(btn);
-  }
- });
- let g=0,a=0,r=0,w=0,e=0;
- for(let i=0;i<7;i++){let o=ensure(dateKey(getDay(i)));Object.values(o.meals).forEach(v=>{if(v==='green')g++;if(v==='amber')a++;if(v==='red')r++});w+=Number(o.wine)||0;e+=(o.exercise||[]).length}
- document.getElementById('greens').textContent=g;document.getElementById('ambers').textContent=a;document.getElementById('reds').textContent=r;document.getElementById('wineTotal').textContent=w;document.getElementById('exerciseTotal').textContent=e;
- let current=ensure(dateKey(new Date()));
- document.getElementById('wineLog').textContent=current.wine?('🍷 '.repeat(current.wine).trim()):'';
- document.getElementById('exerciseLog').textContent=current.exercise.length?current.exercise.join(' • '):'No exercise logged today';
- let week=ensure(dateKey(anchor));
- document.getElementById('weight').value=week.weekWeight||'';
- document.getElementById('note').value=week.note||'';
- document.getElementById('weightDisplay').textContent=week.weekWeight||'—';
+ let end=getDay(6); document.getElementById('weekLabel').textContent=fmt(anchor,{day:'numeric',month:'short'})+' – '+fmt(end,{day:'numeric',month:'short',year:'numeric'});
+ const grid=document.getElementById('grid'); grid.innerHTML='<div></div>'+Array.from({length:7},(_,i)=>{let d=getDay(i);return '<div class="dayhead"><strong>'+fmt(d,{weekday:'short'})+'</strong>'+fmt(d,{day:'numeric',month:'short'})+'</div>'}).join('');
+ meals.forEach(m=>{const iconMap={Breakfast:['🥣','cat-breakfast'],Lunch:['🥗','cat-lunch'],Dinner:['🍴','cat-dinner'],Extras:['🍎','cat-extras']}; const ic=iconMap[m]; grid.insertAdjacentHTML('beforeend','<div class="rowlabel"><span class="caticon '+ic[1]+'">'+ic[0]+'</span> '+m+'</div>');for(let i=0;i<7;i++){let d=getDay(i),k=dateKey(d),o=ensure(k),v=o.meals[m]||'';let symbol=v==='green'?'🟢':v==='amber'?'🟠':v==='red'?'🔴':'·';let btn=document.createElement('button');btn.className='cell '+v+(dateKey(selectedDate)===k?' selected':'');btn.type='button';btn.textContent=symbol;btn.setAttribute('aria-label',m+' '+fmt(d)+' '+(v||'not rated'));btn.addEventListener('click',()=>{selectedDate=new Date(d);cycleMeal(k,m)});grid.appendChild(btn)}});
+ let g=0,a=0,r=0,w=0,e=0,alcoholDays=0,exerciseDays=0;for(let i=0;i<7;i++){let o=ensure(dateKey(getDay(i)));Object.values(o.meals).forEach(v=>{if(v==='green')g++;if(v==='amber')a++;if(v==='red')r++});let ad=Number(o.alcohol)||Number(o.wine)||0;w+=ad;if(ad>0)alcoholDays++;if((o.exercise||[]).length>0)exerciseDays++;e+=(o.exercise||[]).length}
+ document.getElementById('greens').textContent=g;document.getElementById('ambers').textContent=a;document.getElementById('reds').textContent=r;document.getElementById('alcoholTotal').textContent=alcoholDays;document.getElementById('exerciseTotal').textContent=exerciseDays;document.getElementById('weekSummary').textContent=g+' green • '+a+' amber • '+r+' red meals · '+alcoholDays+' alcohol day'+(alcoholDays===1?'':'s')+' · '+exerciseDays+' exercise day'+(exerciseDays===1?'':'s');
+ let today=ensure(currentKey());document.getElementById('alcoholLog').textContent=today.alcohol?(today.alcohol+' drink'+(today.alcohol===1?'':'s')):'No alcohol logged today';document.getElementById('exerciseLog').textContent=today.exercise.length?today.exercise.join(' • '):'No exercise logged today';
+ let week=ensure(dateKey(anchor));document.getElementById('weight').value=week.weekWeight||'';document.getElementById('wentWell').value=week.reflections.wentWell||'';document.getElementById('challenging').value=week.reflections.challenging||'';document.getElementById('wellbeingImpact').value=week.reflections.wellbeingImpact||'';document.getElementById('weightDisplay').textContent=week.weekWeight||'—';renderFoodLog();
 }
+function renderFoodLog(){let k=dateKey(selectedDate),o=ensure(k);document.getElementById('selectedDateLabel').textContent='— '+fmt(selectedDate,{weekday:'short',day:'numeric',month:'short',year:'numeric'});const ds=document.getElementById('dayselect');ds.innerHTML='';for(let i=0;i<7;i++){let d=getDay(i),dk=dateKey(d),b=document.createElement('button');b.className='daypick '+(dk===k?'active':'');b.innerHTML='<strong>'+fmt(d,{weekday:'short'})+'</strong>'+fmt(d,{day:'numeric',month:'short'});b.onclick=()=>setSelected(d);ds.appendChild(b)}const box=document.getElementById('foodlog');box.innerHTML='';meals.forEach(m=>{let row=document.createElement('div');row.className='foodrow';let lab=document.createElement('div');lab.className='foodlabel';lab.textContent=m;let inp=document.createElement('input');inp.className='foodinput';inp.placeholder=m==='Extras'?'Snacks, treats, etc.':'What did I have?';inp.value=o.foods[m]||'';inp.oninput=()=>{ensure(k).foods[m]=inp.value;save()};let rb=document.createElement('button');rb.className='ragbtn '+(o.meals[m]||'');rb.textContent=o.meals[m]==='green'?'🟢':o.meals[m]==='amber'?'🟠':o.meals[m]==='red'?'🔴':'·';rb.onclick=()=>{cycleMeal(k,m);};row.append(lab,inp,rb);box.appendChild(row)});document.getElementById('dailySummary').value=o.dailySummary||''}
 function cycleMeal(k,m){let o=ensure(k),v=o.meals[m]||'';o.meals[m]=v===''?'green':v==='green'?'amber':v==='amber'?'red':'';save();render()}
-function addWine(n){let o=ensure(dateKey(new Date()));o.wine=(Number(o.wine)||0)+n;save();render();toast('Added '+n+' glass'+(n>1?'es':'')+' 🍷')}
-function resetWine(){ensure(dateKey(new Date())).wine=0;save();render()}
-function addExercise(type){let o=ensure(dateKey(new Date()));o.exercise.push(type);save();render();toast(type+' added 💪')}
-function move(n){anchor=new Date(anchor);anchor.setDate(anchor.getDate()+n);render()}
-function today(){anchor=startOfWeek(new Date());render()}
+function addAlcohol(n){let o=ensure(currentKey());o.alcohol=(Number(o.alcohol)||Number(o.wine)||0)+n;o.wine=o.alcohol;save();render();toast('Added '+n+' drink'+(n>1?'s':'')+' 🍷')}
+function resetAlcohol(){let o=ensure(currentKey());o.alcohol=0;o.wine=0;save();render()}
+function addExercise(type){let o=ensure(currentKey());o.exercise.push(type);save();render();toast(type+' added 💪')}
+function resetExercise(){ensure(currentKey()).exercise=[];save();render();toast('Exercise reset')}
+function move(n){anchor=new Date(anchor);anchor.setDate(anchor.getDate()+n);selectedDate=new Date(anchor);selectedDate.setHours(12,0,0,0);render()}
+function today(){anchor=startOfWeek(new Date());selectedDate=new Date();selectedDate.setHours(12,0,0,0);render()}
 function toast(t){let x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1200)}
 
-document.getElementById('prevBtn').addEventListener('click',()=>move(-7));
-document.getElementById('nextBtn').addEventListener('click',()=>move(7));
-document.getElementById('todayBtn').addEventListener('click',today);
-document.getElementById('wine1').addEventListener('click',()=>addWine(1));
-document.getElementById('wine2').addEventListener('click',()=>addWine(2));
-document.getElementById('wineReset').addEventListener('click',resetWine);
-document.querySelectorAll('[data-ex]').forEach(b=>b.addEventListener('click',()=>addExercise(b.dataset.ex)));
-document.getElementById('weight').addEventListener('input',function(){ensure(dateKey(anchor)).weekWeight=this.value;save();document.getElementById('weightDisplay').textContent=this.value||'—'});
-document.getElementById('note').addEventListener('input',function(){ensure(dateKey(anchor)).note=this.value;save()});
+document.getElementById('prevBtn').onclick=()=>move(-7);document.getElementById('nextBtn').onclick=()=>move(7);document.getElementById('todayBtn').onclick=today;
+document.getElementById('alcohol1').onclick=()=>addAlcohol(1);document.getElementById('alcohol2').onclick=()=>addAlcohol(2);document.getElementById('alcoholReset').onclick=resetAlcohol;document.querySelectorAll('[data-ex]').forEach(b=>b.onclick=()=>addExercise(b.dataset.ex));document.getElementById('exerciseReset').onclick=resetExercise;
+document.getElementById('weight').oninput=function(){ensure(dateKey(anchor)).weekWeight=this.value;save();document.getElementById('weightDisplay').textContent=this.value||'—'};document.getElementById('wentWell').oninput=function(){ensure(dateKey(anchor)).reflections.wentWell=this.value;save()};document.getElementById('challenging').oninput=function(){ensure(dateKey(anchor)).reflections.challenging=this.value;save()};document.getElementById('wellbeingImpact').oninput=function(){ensure(dateKey(anchor)).reflections.wellbeingImpact=this.value;save()};document.getElementById('dailySummary').oninput=function(){ensure(dateKey(selectedDate)).dailySummary=this.value;save()};
+document.getElementById('clearDay').onclick=()=>{let k=dateKey(selectedDate),o=ensure(k);o.meals={};o.wine=0;o.alcohol=0;o.exercise=[];o.foods={Breakfast:'',Lunch:'',Dinner:'',Extras:''};o.dailySummary='';save();render();toast('Day cleared')};
+document.getElementById('copyTomorrow').onclick=()=>{let src=ensure(dateKey(selectedDate));let d=new Date(selectedDate);d.setDate(d.getDate()+1);let dst=ensure(dateKey(d));dst.foods=JSON.parse(JSON.stringify(src.foods));dst.meals=JSON.parse(JSON.stringify(src.meals));dst.dailySummary='';save();selectedDate=d;if(d<anchor||d>getDay(6)){anchor=startOfWeek(d)}render();toast('Copied to tomorrow')};
+document.getElementById('menuBtn').onclick=()=>document.getElementById('menu').classList.toggle('show');document.getElementById('menuToday').onclick=()=>{today();document.getElementById('menu').classList.remove('show')};document.getElementById('menuTop').onclick=()=>{document.getElementById('menu').classList.remove('show');window.scrollTo({top:document.querySelector('.card').offsetTop-8,behavior:'smooth'})};document.getElementById('menuFood').onclick=()=>{document.getElementById('menu').classList.remove('show');document.getElementById('dailySummary').scrollIntoView({behavior:'smooth',block:'start'})};document.getElementById('menuCheck').onclick=()=>{document.getElementById('menu').classList.remove('show');document.getElementById('weight').scrollIntoView({behavior:'smooth',block:'start'})};document.getElementById('navTracker').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});document.getElementById('navFood').onclick=()=>document.getElementById('dailySummary').scrollIntoView({behavior:'smooth',block:'start'});document.getElementById('navCheck').onclick=()=>document.getElementById('weight').scrollIntoView({behavior:'smooth',block:'start'});document.getElementById('navSettings').onclick=()=>toast('Settings coming soon');document.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>{selectedDate=new Date();selectedDate.setHours(12,0,0,0);renderFoodLog();document.getElementById('foodlog').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>{const m=b.dataset.jump;const inputs=document.querySelectorAll('.foodrow');const names=['Breakfast','Lunch','Dinner','Extras'];const i=names.indexOf(m);if(i>=0&&inputs[i])inputs[i].querySelector('input').focus()},250)});
 render();
 })();
-</script>
-<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js");</script>
-</body>
-</html>
+</script><script>if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');</script></body></html>
