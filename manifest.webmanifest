@@ -1,17 +1,9 @@
 {
-  "name": "Coxy’s Kitchen Food & Wellbeing Tracker",
-  "short_name": "Coxy’s Tracker",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#f8f4ee",
-  "theme_color": "#6a6359",
-  "description": "Coxy’s Kitchen personal food and wellbeing tracker.",
-  "icons": [
-    {
-      "src": "icon-1024.png",
-      "sizes": "1024x1024",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ]
+  "name":"Coxy’s Kitchen Food & Wellbeing Tracker",
+  "short_name":"Food & Wellbeing Tracker",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#f8f4ee",
+  "theme_color":"#8C2E50",
+  "icons":[{"src":"icon-1024.png","sizes":"1024x1024","type":"image/png","purpose":"any maskable"}]
 }
